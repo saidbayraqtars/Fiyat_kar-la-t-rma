@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiyat Karşılaştırma</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Fiyat Karşılaştırma Sonuçları</h1>
+  </header>
+  <main>
+    <h2 id="category-title"></h2>
+    <div id="products">
+      <!-- Ürünler burada gösterilecek -->
+    </div>
+  </main>
+  <script>
+    const category = localStorage.getItem('selectedCategory');
+    const categoryTitle = document.getElementById('category-title');
+    const productsDiv = document.getElementById('products');
+
+    const products = {
+      laptops: [
+        { name: 'Laptop A', price: '10,000 TL', img: 'https://via.placeholder.com/150' },
+        { name: 'Laptop B', price: '12,000 TL', img: 'https://via.placeholder.com/150' }
+      ],
+      components: [
+        { name: 'RAM 16GB', price: '2,500 TL', img: 'https://via.placeholder.com/150' },
+        { name: 'SSD 1TB', price: '3,000 TL', img: 'https://via.placeholder.com/150' },
+        { name: 'CPU i7', price: '4,500 TL', img: 'https://via.placeholder.com/150' },
+        { name: 'GPU RTX 3080', price: '18,000 TL', img: 'https://via.placeholder.com/150' }
+      ]
+    };
+
+    if (category) {
+      categoryTitle.textContent = category === 'laptops' ? 'Laptoplar' : 'Bilgisayar Parçaları';
+      products[category].forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.innerHTML = `
+          <img src="${product.img}" alt="${product.name}">
+          <p><strong>${product.name}</strong></p>
+          <p>Fiyat: ${product.price}</p>
+        `;
+        productsDiv.appendChild(productDiv);
+      });
+    } else {
+      categoryTitle.textContent = 'Kategori seçilmedi!';
+    }
+  </script>
+</body>
+</html>
