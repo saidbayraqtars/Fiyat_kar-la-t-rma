@@ -68,13 +68,25 @@ main {
   text-align: center;
   padding: 2rem;
 }
-footer {
-  margin-top: 2rem;
-  font-size: 0.9rem;
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
 }
 .product {
   border: 1px solid #ddd;
+  border-radius: 10px;
   padding: 1rem;
-  margin: 1rem;
   text-align: left;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.product img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
 }
