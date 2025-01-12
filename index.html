@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechCompare - Ana Sayfa</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <div class="logo-container">
+        <img src="TechCompare_Logo_Transparent.png" alt="TechCompare Logo" class="logo">
+        <span class="site-name">TechCompare</span>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    </div>
+    <nav id="menu" class="menu">
+      <a href="#" onclick="selectCategory('laptops')">Laptoplar</a>
+      <a href="#" onclick="selectCategory('monitors')">Monitörler</a>
+      <a href="#" onclick="selectCategory('mice')">Fareler</a>
+    </nav>
+  </header>
+  <main>
+    <h1>TechCompare</h1>
+    <p>Fiyatları karşılaştır, akıllıca alışveriş yap! Teknolojiyi en uygun fiyatlarla keşfet.</p>
+  </main>
+  <footer style="text-align: center; margin-top: 2rem; color: var(--footer-color);">
+    @saidbayraqtars®
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
