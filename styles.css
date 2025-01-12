@@ -40,11 +40,15 @@ header {
   font-size: 1.2rem;
   font-weight: bold;
 }
-.menu-toggle, .theme-toggle {
+.menu-toggle {
   font-size: 1.5rem;
   background: none;
   border: none;
+  color: black;
   cursor: pointer;
+}
+body.dark-mode .menu-toggle {
+  color: white;
 }
 .menu {
   display: none;
@@ -63,10 +67,6 @@ header {
 }
 .menu a:hover {
   text-decoration: underline;
-}
-main {
-  text-align: center;
-  padding: 2rem;
 }
 .product-grid {
   display: grid;
@@ -89,4 +89,5 @@ main {
 footer {
   margin-top: 2rem;
   font-size: 0.9rem;
+  color: var(--footer-color);
 }
