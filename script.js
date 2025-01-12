@@ -1,62 +1,48 @@
 
-function handleLogin(event) {
-  event.preventDefault();
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  if (username === 'admin' && password === 'admin123') {
-    localStorage.setItem('isLoggedIn', 'true');
-    window.location.href = 'admin.html';
-  } else {
-    const error = document.getElementById('login-error');
-    error.textContent = 'Hatalı kullanıcı adı veya şifre!';
-  }
+function toggleMenu() {
+  const menu = document.getElementById('menu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
 }
 
-function logout() {
-  localStorage.removeItem('isLoggedIn');
-  window.location.href = 'login.html';
+function toggleTheme() {
+  document.body.classList.toggle('dark-mode');
+  const isDarkMode = document.body.classList.contains('dark-mode');
+  localStorage.setItem('darkMode', isDarkMode);
 }
 
-function handleProductSubmit(event) {
-  event.preventDefault();
-  const name = document.getElementById('product-name').value;
-  const image = document.getElementById('product-image').value;
-  const category = document.getElementById('product-category').value;
-  const pricesInput = document.getElementById('product-prices').value;
-
-  const prices = pricesInput.split(',').reduce((acc, pair) => {
-    const [site, price] = pair.split(':').map(s => s.trim());
-    acc[site] = price;
-    return acc;
-  }, {});
-
-  const product = { name, image, prices };
-
-  const existingProducts = JSON.parse(localStorage.getItem('products')) || {};
-  existingProducts[category] = existingProducts[category] || [];
-  const index = existingProducts[category].findIndex(p => p.name === name);
-  if (index > -1) {
-    existingProducts[category][index] = product;
-    showMessage('Ürün güncellendi!');
-  } else {
-    existingProducts[category].push(product);
-    showMessage('Ürün eklendi!');
-  }
-
-  localStorage.setItem('products', JSON.stringify(existingProducts));
-  event.target.reset();
-}
-
-function showMessage(message) {
-  const messageElement = document.getElementById('product-message');
-  messageElement.textContent = message;
-  setTimeout(() => (messageElement.textContent = ''), 3000);
-}
-
-// Giriş kontrolü (admin.html için)
 window.onload = function () {
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
-  if (!isLoggedIn && window.location.pathname.includes('admin.html')) {
-    window.location.href = 'login.html';
+  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+  }
+
+  // Ürün listesi ve admin giriş kontrolü
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get('category');
+  const categoryTitle = document.getElementById('category-title');
+  const productsDiv = document.getElementById('products');
+
+  const products = JSON.parse(localStorage.getItem('products')) || {
+    laptops: [],
+    monitors: [],
+    mice: []
+  };
+
+  if (category && products[category]) {
+    categoryTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+    products[category].forEach(product => {
+      const productDiv = document.createElement('div');
+      productDiv.className = "product";
+      productDiv.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" style="width: 100%; height: auto; border-radius: 5px;">
+        <p><strong>${product.name}</strong></p>
+        <ul>
+          ${Object.entries(product.prices)
+            .map(([site, price]) => `<li>${site}: ${price}</li>`)
+            .join('')}
+        </ul>
+      `;
+      productsDiv.appendChild(productDiv);
+    });
   }
 };
