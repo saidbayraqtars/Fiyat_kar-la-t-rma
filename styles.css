@@ -1,93 +1,57 @@
 
-:root {
-  --background-color: #ffffff;
-  --text-color: #000000;
-  --footer-color: #777777;
-}
-body.dark-mode {
-  --background-color: #000000;
-  --text-color: #ffffff;
-  --footer-color: #999999;
-}
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: #f4f4f4;
+  color: #333;
 }
 header {
-  position: relative;
-  background-color: var(--background-color);
   padding: 1rem;
-  border-bottom: 1px solid #ddd;
-}
-.top-bar {
+  background: #0073e6;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.logo-container {
+h1, h2 {
+  margin: 0;
+}
+.login-container {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+form {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
-.logo {
-  width: 50px;
-  height: auto;
-  margin-right: 10px;
+label {
+  margin-top: 1rem;
 }
-.site-name {
-  font-size: 1.2rem;
-  font-weight: bold;
+input, select, button {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
-.menu-toggle {
-  font-size: 1.5rem;
-  background: none;
+button {
+  background: #0073e6;
+  color: white;
   border: none;
-  color: black;
   cursor: pointer;
 }
-body.dark-mode .menu-toggle {
-  color: white;
+button:hover {
+  background: #005bb5;
 }
-.menu {
-  display: none;
-  flex-direction: column;
-  background: var(--background-color);
-  position: absolute;
-  top: 60px;
-  left: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
+.success-message {
+  color: green;
+  margin-top: 1rem;
 }
-.menu a {
-  text-decoration: none;
-  color: var(--text-color);
-  margin: 5px 0;
-}
-.menu a:hover {
-  text-decoration: underline;
-}
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-}
-.product {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: left;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.product img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-}
-footer {
-  margin-top: 2rem;
-  font-size: 0.9rem;
-  color: var(--footer-color);
+.error-message {
+  color: red;
+  margin-top: 1rem;
 }

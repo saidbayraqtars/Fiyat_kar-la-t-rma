@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Admin Panel</h1>
+    <button onclick="logout()">Çıkış Yap</button>
+  </header>
+  <main>
+    <section class="product-management">
+      <h2>Ürün Ekle/Güncelle</h2>
+      <form id="product-form" onsubmit="return handleProductSubmit(event)">
+        <label for="product-name">Ürün Adı:</label>
+        <input type="text" id="product-name" required>
+        <label for="product-image">Görsel Linki:</label>
+        <input type="text" id="product-image" required>
+        <label for="product-category">Kategori:</label>
+        <select id="product-category" required>
+          <option value="laptops">Laptoplar</option>
+          <option value="monitors">Monitörler</option>
+          <option value="mice">Fareler</option>
+        </select>
+        <label for="product-prices">Fiyatlar (Site: Fiyat, Virgülle Ayırın):</label>
+        <input type="text" id="product-prices" placeholder="Hepsiburada: 35000, Trendyol: 36000" required>
+        <button type="submit">Kaydet</button>
+      </form>
+      <p id="product-message" class="success-message"></p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
